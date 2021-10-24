@@ -1,14 +1,13 @@
 import { Sequelize } from "sequelize-typescript"
 import path from 'path'
-import { User } from "../models/User"
 
 export const connection = new Sequelize({
     dialect:'mariadb',
-    host:'127.0.0.1',
+    host:process.env.DB_HOST || 'localhost',
     port:3306,
-    username:'root',
-    password:'',
-    database:'xauth',
+    username:process.env.DB_USER || 'root',
+    password:process.env.DB_PASS || '',
+    database:process.env.DB_NAME || 'xauth',
     models:[path.join(__dirname,"./../models")]
 })
 

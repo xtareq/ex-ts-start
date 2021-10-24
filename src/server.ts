@@ -1,8 +1,10 @@
 import express,{Express} from 'express'
 import { connection } from './config/Database';
-import { hello } from './routes';
+import authRoutes from './routes/authRoutes'
 import 'reflect-metadata'
-import { SqlError } from 'mariadb';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export type IPort = number | string
 const PORT = process.env.PORT || 3500
@@ -10,17 +12,23 @@ const PORT = process.env.PORT || 3500
 async function igniteServer(PORT:IPort){
     const server:Express = express();
 
+    server.use(express.json())
+
     /**
      * @function database connection check
      * @return void
     */
-    connection.authenticate().catch((err)=>{
-        process.exit(1)
-    })
+    try {
+        await connection.authenticate()
+        await connection.sync({force:false});
+    } catch (error) {
+        process.exit(1);
+    }
 
-    connection.sync();
 
-    server.get('/',hello);
+
+    server.use("/auth", authRoutes)
+
 
 
     server.listen(PORT)

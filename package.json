@@ -5,20 +5,31 @@
   "license": "MIT",
   "scripts": {
     "compile": "typescript -p .",
-    "dev": "nodemon src/server.ts"
+    "compile:watch": "tsc -w",
+    "serve": "nodemon ./dist/server.js",
+    "dev": "npm-run-all --parallel compile:watch serve"
   },
   "dependencies": {
+    "@types/jsonwebtoken": "^8.5.5",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.5.4",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.7.0",
     "sequelize-typescript": "^2.1.1"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
     "@types/node": "^16.10.3",
+    "@types/shelljs": "^0.8.9",
     "nodemon": "^2.0.13",
+    "npm-run-all": "^4.1.5",
+    "shelljs": "^0.8.4",
     "typescript": "^4.4.3"
   }
 }

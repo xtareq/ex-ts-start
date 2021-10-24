@@ -1,4 +1,5 @@
-import { Column as Col, CreatedAt, Model, Table, UpdatedAt } from "sequelize-typescript";
+import { BelongsTo, Column as Col, CreatedAt, Default, ForeignKey, Model, Table, UpdatedAt } from "sequelize-typescript";
+import { Role } from "./Role";
 
 
 @Table({
@@ -17,6 +18,24 @@ export class User extends Model{
 
     @Col
     password!:string
+
+    @Col
+    avatar!:string
+
+    @Default(null)
+    @Col
+    verify_code!:string
+
+    @Default(false)
+    @Col
+    verified!:boolean
+
+    @ForeignKey(()=>Role)
+    @Col 
+    roleId!:number
+
+    @BelongsTo(()=>Role)
+    role!:Role
 
     @CreatedAt
     created_at!: Date 
