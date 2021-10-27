@@ -10,9 +10,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountController = void 0;
+const User_1 = require("../models/User");
 class AccountController {
     getProfile(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let isUser = yield User_1.User.findByPk(req.userId, {
+                    attributes: { exclude: ['password'] }
+                });
+                return res.json({
+                    message: "Get Profile",
+                    user: isUser
+                });
+            }
+            catch (error) {
+                console.log(error);
+                return res.status(500).json({
+                    message: "Something going wrong!"
+                });
+            }
         });
     }
 }

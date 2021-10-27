@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const Database_1 = require("./config/Database");
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
+const accountRoutes_1 = __importDefault(require("./routes/accountRoutes"));
 require("reflect-metadata");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -36,6 +37,7 @@ function igniteServer(PORT) {
             process.exit(1);
         }
         server.use("/auth", authRoutes_1.default);
+        server.use("/account", accountRoutes_1.default);
         server.listen(PORT);
     });
 }

@@ -37,7 +37,7 @@ class AuthController {
             try {
                 const { email, password } = req.body;
                 //find user by email
-                const isUser = yield User_1.User.findOne({ where: { email: email } });
+                let isUser = yield User_1.User.findOne({ where: { email: email } });
                 //if not registered
                 if (!isUser)
                     return res.status(404).json({ message: "User not Found!" });
@@ -49,6 +49,7 @@ class AuthController {
                     return res.status(401).json({ message: "Incorrect Password" });
                 //generate token 
                 const token = jsonwebtoken_1.default.sign({ userId: isUser.id }, JWT_KEY, { expiresIn: 3600 });
+                isUser.password = "";
                 return res.json({
                     token: token,
                     user: isUser

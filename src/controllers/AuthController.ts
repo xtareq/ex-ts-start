@@ -19,7 +19,7 @@ export class AuthController{
             const {email,password} = req.body 
 
             //find user by email
-            const isUser = await User.findOne({where:{email:email}})
+            let isUser = await User.findOne({where:{email:email}})
 
             //if not registered
             if(!isUser)return res.status(404).json({message:"User not Found!"})
@@ -29,10 +29,10 @@ export class AuthController{
     
             //check password
             if(!checkHash(password,isUser.password))return res.status(401).json({message:"Incorrect Password"})
-    
+            
             //generate token 
             const token = jwt.sign({userId:isUser.id},JWT_KEY,{expiresIn:3600})
-    
+            isUser.password= ""
             return res.json({
                 token:token,
                 user:isUser
