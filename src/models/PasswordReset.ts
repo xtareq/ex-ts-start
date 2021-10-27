@@ -7,12 +7,11 @@ import { User } from "./User";
 })
 export class PasswordReset extends Model{
     
-    @ForeignKey(()=>User)
     @Col
-    userId!:number
+    email!:string
 
     @Col
-    code!:string
+    token!:string
 
     @Default(false)
     @Col

@@ -1,7 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmailVerifyTemplate = void 0;
-const EmailVerifyTemplate = (name, code) => {
+
+
+export const ResetPasswordLink = (name:string, resetLink:string)=>{
     return `
     <html xmlns="http://www.w3.org/1999/xhtml"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,12 +47,15 @@ const EmailVerifyTemplate = (name, code) => {
     <tbody><tr>
     <td class="content-cell" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
     <h1 style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 18px; font-weight: bold; margin-top: 0; text-align: left;">Hello ${name}</h1>
-    <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Thank you for register in saxon prime. Please consider below code to verify your email.</p>
+    <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Thank you for be with saxon. Please consider clicking below link to reset your password.</p>
     <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 32px; line-height: 1.5em; margin-top: 0; text-align: center;">
-        <span style="padding: 10px 20px; color:white; border:1px solid gray; border-radius:12px; background-color: indigo;font-size:22px;">
-            ${code}
-        </span>
+        <a href="${resetLink}"  style="text-decoration:none; padding: 10px 20px; color:white; border:1px solid gray; border-radius:12px; background-color: indigo;font-size:22px;">
+            Reset Password
+        </a>
     </p>
+    <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
+    If above button not work please copy/paste this url <a href="${resetLink}">${resetLink}</a>
+  </p>
     <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Regards,<br>
     Saxon Prime</p>
     
@@ -83,6 +85,5 @@ const EmailVerifyTemplate = (name, code) => {
     </tbody></table>
     </body></html>
     
-    `;
-};
-exports.EmailVerifyTemplate = EmailVerifyTemplate;
+    `
+}
