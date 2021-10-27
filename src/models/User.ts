@@ -1,4 +1,4 @@
-import { BelongsTo, Column as Col, CreatedAt, Default, ForeignKey, Model, Table, UpdatedAt } from "sequelize-typescript";
+import { BelongsTo, Column as Col, CreatedAt, Default, DefaultScope, ForeignKey, Model, Table, UpdatedAt } from "sequelize-typescript";
 import { Role } from "./Role";
 
 

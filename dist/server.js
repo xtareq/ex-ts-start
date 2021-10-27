@@ -30,6 +30,7 @@ function igniteServer(PORT) {
         try {
             yield Database_1.connection.authenticate();
             yield Database_1.connection.sync({ force: false });
+            //await connection.models.PasswordReset.sync({force:true})
         }
         catch (error) {
             process.exit(1);

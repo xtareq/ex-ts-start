@@ -25,7 +25,9 @@ exports.AuthController = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const helpers_1 = require("../helpers");
 const Str_1 = require("../helpers/Str");
+const mailer_1 = require("../lib/mailer");
 const User_1 = require("../models/User");
+const EmailVerify_1 = require("../templates/EmailVerify");
 const JWT_KEY = process.env.JWT_KEY || "sdfsdf8903)8s9df0#&)08_DSf8S_)8DF*SDF^*&S";
 class AuthController {
     login(req, res) {
@@ -66,6 +68,16 @@ class AuthController {
             body = Object.assign(Object.assign({}, body), { password: (0, Str_1.makeHash)(body.password), verify_code: (0, Str_1.randNumber)(111111, 999999) });
             try {
                 const isUser = yield User_1.User.create(body);
+                const mailer = new mailer_1.Mailer("smtp");
+                let template = (0, EmailVerify_1.EmailVerifyTemplate)(isUser.name, isUser.verify_code);
+                let option = {
+                    test: true,
+                    sender: "Saxon Prime <register@saxonprime.com>",
+                    receiver: isUser.name + " <" + isUser.email + ">",
+                    subject: "Email Verification Code",
+                    html: template
+                };
+                yield mailer.send(option);
                 return res.json({
                     data: isUser,
                     message: "Registered Successfully"
@@ -112,7 +124,37 @@ class AuthController {
             }
         });
     }
-    reVerify() {
+    reVerify({ body }, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let isUser = yield User_1.User.findOne({ where: { email: body.email } });
+            //if not registered
+            if (!isUser)
+                return res.status(404).json({ message: "User not Found!" });
+            //is verified
+            if (isUser.verified)
+                return res.status(400).json({ message: "Already verified" });
+            try {
+                let isVerified = yield User_1.User.update({
+                    verify_code: (0, Str_1.randNumber)(111111, 999999)
+                }, {
+                    where: {
+                        email: body.email
+                    }
+                });
+                return res.json({
+                    message: 'Resend verify code!',
+                    email: body.email
+                });
+            }
+            catch (error) {
+                return res.status(500).json({
+                    message: 'Something going wrong!',
+                    email: body.email
+                });
+            }
+        });
+    }
+    forgetPasswordRequest() {
         throw new Error("Method not implemented.");
     }
     forgetPassword() {
@@ -120,21 +162,33 @@ class AuthController {
     }
 }
 __decorate([
-    (0, helpers_1.Validate)(['email', 'password']),
+    (0, helpers_1.Validate)(['email:type=email', 'password!:min=6']),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
 __decorate([
-    (0, helpers_1.Validate)(['name', 'email', 'phone', 'password']),
+    (0, helpers_1.Validate)([
+        'name',
+        'email:type=email',
+        'phone:pattern=^(?:\\+?88|0088)?01[15-9]\\d{8}$',
+        'password',
+        'confirm_password:match=password'
+    ]),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "register", null);
 __decorate([
-    (0, helpers_1.Validate)(['email', 'verify_code']),
+    (0, helpers_1.Validate)(['email:type=email', 'verify_code']),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "verify", null);
+__decorate([
+    (0, helpers_1.Validate)(['email:type=email']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "reVerify", null);
 exports.AuthController = AuthController;
