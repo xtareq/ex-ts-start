@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "bin": "./bin/cli/js",
   "scripts": {
     "compile": "typescript -p .",
     "compile:watch": "tsc -w",
