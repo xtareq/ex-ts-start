@@ -16,7 +16,7 @@ const runCommand = command =>{
 
 const repoName = process.argv[2];
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/xtareq/ex-ts-start ${repoName}`;
-const installDepsCommand = `cd ${repoName} && yarn install`
+const installDepsCommand = `cd ${repoName} && yarn`
 
 console.log(`Cloning the repository with name ${repoName}`);
 const checkedOut = runCommand(gitCheckoutCommand);
