@@ -22,21 +22,19 @@ const jwtKeyGen = ()=>{
     return hs
 }
 
-// const updateEnv = ()=>{
-//     let content = fs.readFileSync(path.resolve(__dirname+"./../.env")).toString()
-//     content = content.replace("JWT_KEY=",`JWT_KEY=${jwtKeyGen()}`)
-//     fs.writeFileSync(path.resolve(__dirname+"./../.env"),content)
-//     return;
-// }
+const updateEnv = (repoName)=>{
+
+    let content = fs.readFileSync(path.join(process.cwd(),`${repoName}/.env`)).toString()
+    content = content.replace("JWT_KEY=",`JWT_KEY=${jwtKeyGen()}`)
+    fs.writeFileSync(path.join(process.cwd(),`${repoName}/.env`))
+    return;
+}
 
 const repoName = process.argv[2];
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/xtareq/ex-ts-start ${repoName}`;
 const installDepsCommand = `cd ${repoName} && yarn`
 const copyEnvCommand = `cd ${repoName} && cp -r .env.example .env`
-// const genJwtKeyCommand = `cd ${repoName} && 
-console.log(process.cwd());
-
-// `
+const genJwtKeyCommand = `${updateEnv(repoName)}`
 
 console.log(`Cloning the repository with name ${repoName}`);
 const checkedOut = runCommand(gitCheckoutCommand);
@@ -52,9 +50,9 @@ const copyEnv = runCommand(copyEnvCommand)
 if(!copyEnv)process.exit(-1)
 
 
-// console.log(`Generate JWT secret key in .env`)
-// const genJwtKey = runCommand(genJwtKeyCommand)
-// if(!genJwtKey)process.exit(-1)
+console.log(`Generate JWT secret key in .env`)
+const genJwtKey = runCommand(genJwtKeyCommand)
+if(!genJwtKey)process.exit(-1)
 
 
 
