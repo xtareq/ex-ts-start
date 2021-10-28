@@ -1,6 +1,6 @@
 {
   "name": "ex-ts-start",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A express-typescript-mysql starter app with basic authentication.",
   "main": "index.js",
   "license": "MIT",
