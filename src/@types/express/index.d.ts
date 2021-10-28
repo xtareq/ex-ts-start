@@ -1,7 +1,7 @@
 import { JwtPayload } from "jsonwebtoken";
 
 declare namespace Express {
-    export interface Request {
-       userId?:number
+    export interface RequestWithUser extends Request {
+       user:any
     }
  }

@@ -14,6 +14,7 @@ const router = Router()
 router.use(Authenticate)
 
 router.get("/profile", accountController.getProfile)
+router.post("/change-password", accountController.changePassword)
 
 
 
