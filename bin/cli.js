@@ -2,7 +2,7 @@
 
 const {execSync} = require('child_process');
 const fs = require('fs');
-const { dirname } = require('path');
+const path = require('path');
 
 const runCommand = command =>{
     try {
