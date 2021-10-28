@@ -34,7 +34,7 @@ const gitCheckoutCommand = `git clone --depth 1 https://github.com/xtareq/ex-ts-
 const installDepsCommand = `cd ${repoName} && yarn`
 const copyEnvCommand = `cd ${repoName} && cp -r .env.example .env`
 // const genJwtKeyCommand = `cd ${repoName} && 
-
+console.log(process.cwd());
 
 // `
 
