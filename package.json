@@ -1,6 +1,7 @@
 {
   "name": "ex-ts-start",
   "version": "1.0.1",
+  "description": "A express-typescript-mysql starter app with basic authentication.",
   "main": "index.js",
   "license": "MIT",
   "bin": "./bin/cli/js",
@@ -9,6 +10,16 @@
     "compile:watch": "tsc -w",
     "serve": "nodemon ./dist/server.js",
     "dev": "npm-run-all --parallel compile:watch serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xtareq/ex-ts-start"
+  },
+  "keywords": ["express","typescript","mariadb","mysql","sequelize","REST","authentication"],
+  "author": {
+    "name": "Tareq Hossain",
+    "email": "xtrinsic96@gmail.com",
+    "url": "https://www.linkedin.com/in/xtrinsictareq/"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.5.0",
