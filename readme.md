@@ -9,11 +9,6 @@ installation process and your authentication part is almost 80% done by default.
     cd {project}
 ```
 
-Now it's time to copy and update .env
-
-``` sh
-    cp -r .env.example .env 
-```
 Open project in your favorite code editor. if you using Visual studio code you can just run: 
 ``` sh
     code .
