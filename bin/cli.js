@@ -44,7 +44,7 @@ if(!copyEnv)process.exit(-1)
 const updateEnv = (repoName)=>{
     let content = fs.readFileSync(path.join(process.cwd(),`${repoName}/.env`)).toString()
     content = content.replace("JWT_KEY=",`JWT_KEY=${jwtKeyGen()}`)
-    fs.writeFileSync(path.join(process.cwd(),`${repoName}/.env`))
+    fs.writeFileSync(path.join(process.cwd(),`${repoName}/.env`),content)
     console.log(`Update .env JWT KEY`)
     return;
 }
