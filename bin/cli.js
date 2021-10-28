@@ -17,9 +17,7 @@ const runCommand = command =>{
 }
 
 const jwtKeyGen = ()=>{
-    var current_date = (new Date()).valueOf().toString();
-    var random = Math.random().toString();
-    let hs=crypto.createHash('SHA256').update(current_date + random).digest('hex');
+    let hs=crypto.randomBytes(256).toString('base64');
     return hs
 }
 
