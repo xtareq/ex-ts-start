@@ -184,7 +184,7 @@ export class AuthController{
             let isUser = await User.findOne({where:{email:body.email}})
             if(!isUser)return res.status(404).json({message:"User not Found!"})
             let forgetPasswordLink = `${clientUrl}/forget-password?email=${body.email}&t=${saveToken.token}`
-            const mailer = new Mailer("smtp")
+            const mailer = new Mailer("sendgrid")
             let template = ResetPasswordLink(isUser.name, forgetPasswordLink)
             let option: SMTPOption = {
                 test: true,
