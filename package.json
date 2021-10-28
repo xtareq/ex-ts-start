@@ -1,6 +1,6 @@
 {
   "name": "ex-ts-start",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "A express-typescript-mysql starter app with basic authentication.",
   "main": "index.js",
   "license": "MIT",
@@ -8,7 +8,9 @@
   "scripts": {
     "compile": "typescript -p .",
     "compile:watch": "tsc -w",
+    "start": "node ./dist/server.js",
     "serve": "nodemon ./dist/server.js",
+    "build":"npm-run-all --parallel compile start",
     "dev": "npm-run-all --parallel compile:watch serve"
   },
   "repository": {

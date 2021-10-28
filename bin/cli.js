@@ -16,7 +16,7 @@ const runCommand = command =>{
 
 const repoName = process.argv[2];
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/xtareq/ex-ts-start ${repoName}`;
-const installDepsCommand = `cd ${repoName} && yarn`
+const installDepsCommand = `cd ${repoName} && yarn install`
 
 console.log(`Cloning the repository with name ${repoName}`);
 const checkedOut = runCommand(gitCheckoutCommand);
@@ -30,9 +30,7 @@ if(!installedDeps)process.exit(-1)
 console.log("")
 console.log("Congratulation 👍! You are almost ready to serve. Just complete following steps to serve.")
 console.log("")
-console.log("")
-console.log("cd ${repoName}")
-console.log("")
+console.log(`cd ${repoName}`)
 console.log("")
 console.log("run cp -r .env.example .env")
 console.log("Update .env file like database info, jwt, redis etc.")
