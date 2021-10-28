@@ -32,8 +32,8 @@ const updateEnv = ()=>{
 const repoName = process.argv[2];
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/xtareq/ex-ts-start ${repoName}`;
 const installDepsCommand = `cd ${repoName} && yarn`
-const copyEnv = `cd ${repoName} && cp -r .env.example .env`
-const getJwt = `cd ${repoName} && ${updateEnv()}`
+const copyEnvCommand = `cd ${repoName} && cp -r .env.example .env`
+const genJwtKeyCommand = `cd ${repoName} && ${updateEnv()}`
 
 console.log(`Cloning the repository with name ${repoName}`);
 const checkedOut = runCommand(gitCheckoutCommand);
@@ -41,9 +41,21 @@ const checkedOut = runCommand(gitCheckoutCommand);
 if(!checkedOut)process.exit(-1)
 
 console.log(`Installing dependencies for ${repoName}`)
-
 const installedDeps = runCommand(installDepsCommand)
 if(!installedDeps)process.exit(-1)
+
+console.log(`Copy .env in ${repoName}`)
+const copyEnv = runCommand(copyEnvCommand)
+if(!copyEnv)process.exit(-1)
+
+
+console.log(`Generate JWT secret key in .env`)
+const genJwtKey = runCommand(genJwtKeyCommand)
+if(!genJwtKey)process.exit(-1)
+
+
+
+
 console.log("")
 console.log("Congratulation 👍! You are almost ready to serve. Just complete following steps to serve.")
 console.log("")
