@@ -23,9 +23,9 @@ const jwtKeyGen = ()=>{
 }
 
 const updateEnv = ()=>{
-    let content = fs.readFileSync(__dirname+"./../.env").toString()
+    let content = fs.readFileSync(path.resolve(__dirname+"./../.env")).toString()
     content = content.replace("JWT_KEY=",`JWT_KEY=${jwtKeyGen()}`)
-    fs.writeFileSync(__dirname+"./../.env",content)
+    fs.writeFileSync(path.resolve(__dirname+"./../.env"),content)
     return;
 }
 
