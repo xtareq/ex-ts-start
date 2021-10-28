@@ -22,12 +22,12 @@ const jwtKeyGen = ()=>{
     return hs
 }
 
-const updateEnv = ()=>{
-    let content = fs.readFileSync(path.resolve(__dirname+"./../.env")).toString()
-    content = content.replace("JWT_KEY=",`JWT_KEY=${jwtKeyGen()}`)
-    fs.writeFileSync(path.resolve(__dirname+"./../.env"),content)
-    return;
-}
+// const updateEnv = ()=>{
+//     let content = fs.readFileSync(path.resolve(__dirname+"./../.env")).toString()
+//     content = content.replace("JWT_KEY=",`JWT_KEY=${jwtKeyGen()}`)
+//     fs.writeFileSync(path.resolve(__dirname+"./../.env"),content)
+//     return;
+// }
 
 const repoName = process.argv[2];
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/xtareq/ex-ts-start ${repoName}`;
