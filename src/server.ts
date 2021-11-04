@@ -14,6 +14,7 @@ async function igniteServer(PORT:IPort){
     const server:Express = express();
 
     server.use(express.json())
+    server.use('/static', express.static('public'))
 
     /**
      * @function database connection check
