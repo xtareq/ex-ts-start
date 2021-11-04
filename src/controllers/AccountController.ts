@@ -1,10 +1,7 @@
-import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
-import { is } from "sequelize/types/lib/operators";
-import { IRequest } from "../@types";
+import { Request, Response } from "express";
+import { IRequest } from "../types";
 import { Validate } from "../helpers";
-import { cap, checkHash, isEmpty, makeHash, randNumber } from "../helpers/Str";
-import { Mailer, SMTPOption } from "../lib/mailer";
+import { checkHash, makeHash } from "../helpers/Str";
 import { User } from "../models/User";
 
 

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from 'jsonwebtoken'
-import { IRequest } from "../@types";
+import { IRequest } from "../types";
 
 
 

@@ -3,4 +3,5 @@ dist
 .env
 .envex
 .vscode
-.yarn-error.log
+yarn-error.log
+yarn.lock
