@@ -15,7 +15,7 @@ const router = Router()
 
 
 // upload routes
-router.post('/upload',  uploadController.uploadFile)
+router.post('/test',  uploadController.uploadFile)
 
 
 

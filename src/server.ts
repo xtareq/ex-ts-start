@@ -5,6 +5,7 @@ import accountRoutes from './routes/accountRoutes'
 import uploadRoutes from './routes/uploadRoutes'
 import 'reflect-metadata'
 import dotenv from 'dotenv'
+import fileUpload from 'express-fileupload'
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ async function igniteServer(PORT:IPort){
     const server:Express = express();
 
     server.use(express.json())
+    server.use(fileUpload({}));
     server.use('/static', express.static('public'))
 
     /**
