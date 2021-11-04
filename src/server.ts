@@ -2,6 +2,7 @@ import express,{Express} from 'express'
 import { connection } from './config/Database';
 import authRoutes from './routes/authRoutes'
 import accountRoutes from './routes/accountRoutes'
+import uploadRoutes from './routes/uploadRoutes'
 import 'reflect-metadata'
 import dotenv from 'dotenv'
 
@@ -32,6 +33,7 @@ async function igniteServer(PORT:IPort){
 
     server.use("/auth", authRoutes)
     server.use("/account", accountRoutes)
+    server.use("/upload", uploadRoutes)
 
 
 

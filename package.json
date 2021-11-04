@@ -7,8 +7,9 @@
   "scripts": {
     "compile": "tsc -p .",
     "compile:watch": "tsc -w",
+    "clean": "rm -rf dist",
     "start": "node ./dist/server.js",
-    "copyPublic":"cp -r public ./dist",
+    "copyPublic": "cp -r public ./dist",
     "serve": "npm-run-all compile copyPublic start",
     "dev": "nodemon ./src/server.ts"
   },
@@ -37,21 +38,25 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
     "express-jwt": "^6.1.0",
     "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.5.4",
     "nodemailer": "^6.7.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.7.0",
-    "sequelize-typescript": "^2.1.1"
+    "sequelize-typescript": "^2.1.1",
+    "sharp": "^0.29.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
+    "@types/express-fileupload": "^1.1.7",
     "@types/express-jwt": "^6.0.2",
     "@types/node": "^16.10.3",
     "@types/nodemailer": "^6.4.4",
+    "@types/sharp": "^0.29.3",
     "@types/shelljs": "^0.8.9",
     "nodemon": "^2.0.13",
     "npm-run-all": "^4.1.5",
