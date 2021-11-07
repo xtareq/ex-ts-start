@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { IRequest } from "../types";
-import { Validate } from "../helpers";
-import { checkHash, makeHash } from "../helpers/Str";
+import { checkHash, makeHash, Validate } from "ex-helpers";
 import { User } from "../models/User";
 
 

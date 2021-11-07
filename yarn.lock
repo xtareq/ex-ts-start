@@ -217,6 +217,11 @@
     "@types/glob" "*"
     "@types/node" "*"
 
+"@xtareq/validator@^1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@xtareq/validator/-/validator-1.1.9.tgz#d4d6233c6bb9ca59456cd9cb8fa777facae57625"
+  integrity sha512-ooZe+QY7hh20FT/npD1IMic+AKODCChLBOCKXFyvIUdwMeqNwRFTYil9yjqPlwBcRZjzReIdgmoCwtcZ82mn0w==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -827,6 +832,14 @@ etag@~1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
+
+ex-helpers@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/ex-helpers/-/ex-helpers-1.0.5.tgz#edc6fc37d23e6a84d0f6e758f9fb9f2dbc007564"
+  integrity sha512-gGmfnR4/B4Om84+zU6MAPmWpymBm5BXLweEgWoCVAcYJbkoPpIaeJEmHQAd37aLSd0BtjCkWHneuzszf77XwVw==
+  dependencies:
+    "@xtareq/validator" "^1.1.9"
+    bcryptjs "^2.4.3"
 
 expand-template@^2.0.3:
   version "2.0.3"

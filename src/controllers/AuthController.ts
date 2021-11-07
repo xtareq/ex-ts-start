@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { Validate } from "../helpers";
-import { cap, checkHash, isEmpty, makeHash, randNumber } from "../helpers/Str";
+import { cap, checkHash, isEmpty, makeHash, randNumber, Validate } from "ex-helpers";
 import { Mailer, SMTPOption } from "../lib/mailer";
 import { PasswordReset } from "../models/PasswordReset";
 import { User } from "../models/User";
