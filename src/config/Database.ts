@@ -7,7 +7,7 @@ export const connection = new Sequelize({
     port:3306,
     username:process.env.DB_USER || 'root',
     password:process.env.DB_PASS || '',
-    database:process.env.DB_NAME || 'xauth',
+    database:process.env.DB_NAME || '',
     models:[path.join(__dirname,"./../models")]
 })
 
