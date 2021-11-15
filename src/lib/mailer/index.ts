@@ -1,4 +1,3 @@
-
 export interface SendGridAttachMent {
     content: any
     filename: string

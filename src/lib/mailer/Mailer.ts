@@ -12,8 +12,8 @@ export class Mailer {
         try {
             console.log("Ignite nodemailer...");
 
-            let config = option?.config
-            let mailer = nodeMailer.createTransport({
+            const config = option?.config
+            const mailer = nodeMailer.createTransport({
                 host: option.test ? "smtp.mailtrap.io" : config?.host,
                 port: option.test ? 2525 : config?.port,
                 secure: option.test ? false : config?.secure,
@@ -23,7 +23,7 @@ export class Mailer {
                 }
             })
 
-            let info = await mailer.sendMail({
+            const info = await mailer.sendMail({
                 from: option.sender,
                 to: option.receiver,
                 subject: option.subject,
@@ -43,7 +43,7 @@ export class Mailer {
 
         try {
             sendGrid.setApiKey(option.apiKey)
-            let message = {
+            const message = {
                 to: option.receiver,
                 from: option.sender,
                 subject: option.subject,
@@ -58,12 +58,12 @@ export class Mailer {
 
 
     async send(option: any) {
-        if (this._agent == "smtp") {
-            return await this.sendWithSMTP(option)
+        if (this._agent === "smtp") {
+            return this.sendWithSMTP(option)
         }
 
-        if (this._agent == "sendgrid") {
-            return await this.sendWithSendgrid(option)
+        if (this._agent === "sendgrid") {
+            return this.sendWithSendgrid(option)
         }
 
         return;

@@ -17,23 +17,23 @@ export class AuthController {
         try {
             const { email, password } = req.body
 
-            //find user by email
-            let isUser = await User.findOne({ where: { email: email } })
+            // find user by email
+            const isUser = await User.findOne({ where: { email } })
 
-            //if not registered
+            // if not registered
             if (!isUser) return res.status(404).json({ message: "User not Found!" })
 
-            //is verified
+            // is verified
             if (!isUser.verified) return res.status(401).json({ message: "User not verified" })
 
-            //check password
+            // check password
             if (!checkHash(password, isUser.password)) return res.status(401).json({ message: "Incorrect Password" })
 
-            //generate token 
+            // generate token 
             const token = jwt.sign({ userId: isUser.id }, JWT_KEY, { expiresIn: 3600 })
             isUser.password = ""
             return res.json({
-                token: token,
+                token,
                 user: isUser
             })
         } catch (err) {
@@ -53,9 +53,9 @@ export class AuthController {
         'confirm_password:match=password'
     ])
     async register({ body }: Request, res: Response) {
-        let isUser = await User.findOne({ where: { email: body.email } })
+        const foundUser = await User.findOne({ where: { email: body.email } })
 
-        if (isUser) return res.status(400).json({ message: "Email already exits!" })
+        if (foundUser) return res.status(400).json({ message: "Email already exits!" })
 
         body = {
             ...body,
@@ -65,8 +65,8 @@ export class AuthController {
         try {
             const isUser = await User.create(body)
             const mailer = new Mailer("smtp")
-            let template = EmailVerifyTemplate(isUser.name, isUser.verify_code)
-            let option: SMTPOption = {
+            const template = EmailVerifyTemplate(isUser.name, isUser.verify_code)
+            const option: SMTPOption = {
                 test: true,
                 sender: "Saxon Prime <register@saxonprime.com>",
                 receiver: isUser.name + " <" + isUser.email + ">",
@@ -88,12 +88,12 @@ export class AuthController {
 
     @Validate(['email:type=email', 'verify_code'])
     async verify({ body }: Request, res: Response): Promise<any> {
-        let isUser = await User.findOne({ where: { email: body.email } })
+        const isUser = await User.findOne({ where: { email: body.email } })
 
-        //if not registered
+        // if not registered
         if (!isUser) return res.status(404).json({ message: "User not Found!" })
 
-        //is verified
+        // is verified
         if (isUser.verified) return res.status(400).json({ message: "Already verified" })
 
         // check code 
@@ -101,7 +101,7 @@ export class AuthController {
 
         try {
 
-            let isVerified = await User.update({
+            const isVerified = await User.update({
                 verify_code: null,
                 verified: true
             }, {
@@ -127,14 +127,14 @@ export class AuthController {
     async reVerifyRequest({ body }: Request, res: Response): Promise<any> {
         let isUser = await User.findOne({ where: { email: body.email } })
 
-        //if not registered
+        // if not registered
         if (!isUser) return res.status(404).json({ message: "User not Found!" })
 
-        //is verified
+        // is verified
         if (isUser.verified) return res.status(400).json({ message: "Already verified" })
 
         try {
-            let isVerified = await User.update({
+            const isVerified = await User.update({
                 verify_code: randNumber(111111, 999999)
             }, {
                 where: {
@@ -143,8 +143,8 @@ export class AuthController {
             })
             isUser = await isUser.reload()
             const mailer = new Mailer("smtp")
-            let template = EmailVerifyTemplate(isUser.name, isUser.verify_code)
-            let option: SMTPOption = {
+            const template = EmailVerifyTemplate(isUser.name, isUser.verify_code)
+            const option: SMTPOption = {
                 test: true,
                 sender: "Saxon Prime <register@saxonprime.com>",
                 receiver: isUser.name + " <" + isUser.email + ">",
@@ -168,25 +168,25 @@ export class AuthController {
     @Validate(['email'])
     async forgetPasswordRequest({ body }: Request, res: Response): Promise<any> {
         try {
-            let urlToken = makeHash(body.email)
-            //agent 
-            let clientUrl = process.env.CLIENT_URL || null
-            if (!clientUrl || clientUrl == "") {
+            const urlToken = makeHash(body.email)
+            // agent 
+            const clientUrl = process.env.CLIENT_URL || null
+            if (!clientUrl || clientUrl === "") {
                 res.status(400)
                 return res.json({
                     message: "Client url no defined!"
                 })
             }
-            let saveToken = await PasswordReset.create({
+            const saveToken = await PasswordReset.create({
                 email: body.email,
                 token: urlToken
             })
-            let isUser = await User.findOne({ where: { email: body.email } })
+            const isUser = await User.findOne({ where: { email: body.email } })
             if (!isUser) return res.status(404).json({ message: "User not Found!" })
-            let forgetPasswordLink = `${clientUrl}/forget-password?email=${body.email}&t=${saveToken.token}`
+            const forgetPasswordLink = `${clientUrl}/forget-password?email=${body.email}&t=${saveToken.token}`
             const mailer = new Mailer("sendgrid")
-            let template = ResetPasswordLink(isUser.name, forgetPasswordLink)
-            let option: SMTPOption = {
+            const template = ResetPasswordLink(isUser.name, forgetPasswordLink)
+            const option: SMTPOption = {
                 test: true,
                 sender: "Saxon Prime <register@saxonprime.com>",
                 receiver: isUser.name + " <" + isUser.email + ">",
@@ -211,15 +211,15 @@ export class AuthController {
     @Validate(['email', 'token'])
     async checkResetPasswordToken(req: Request, res: Response): Promise<any> {
         try {
-            let body = req.body
-            let isValid = await PasswordReset.findOne({
+            const body = req.body
+            const isValid = await PasswordReset.findOne({
                 where: {
                     email: body.email,
                     token: body.token,
                     expired: false
                 }
             })
-            //if not registered
+            // if not registered
             if (!isValid) return res.status(401).json({ message: "Invalid Token" })
             return res.json({
                 email: body.email,
@@ -238,24 +238,24 @@ export class AuthController {
     @Validate(['email', 'token', 'new_password:min=6', 'confirm_password:match=new_password'])
     async resetPassword(req: Request, res: Response): Promise<any> {
         try {
-            let body = req.body
-            let isUser = await User.findOne({ where: { email: body.email } })
-            //if not registered
+            const body = req.body
+            const isUser = await User.findOne({ where: { email: body.email } })
+            // if not registered
             if (!isUser) return res.status(404).json({ message: "User not Found!" })
-            let isValid = await PasswordReset.findOne({
+            const isValid = await PasswordReset.findOne({
                 where: {
                     email: body.email,
                     token: body.token,
                     expired: false
                 }
             })
-            //if not registered
+            // if not registered
             if (!isValid) return res.status(401).json({ message: "Invalid Token" })
 
-            let isUpdate = await User.update({
+            const isUpdate = await User.update({
                 password: makeHash(body.new_password)
             }, { where: { email: body.email } })
-            let expireToken = await PasswordReset.update({
+            const expireToken = await PasswordReset.update({
                 expired: true,
             }, { where: { email: body.email } })
 

@@ -6,16 +6,15 @@ import { User } from "../models/User";
 
 export class AccountController {
 
-    async uploadAvatar(req: Request, res: Response) {
-
-    }
+    // tslint:disable-next-line: no-empty
+    async uploadAvatar(req: Request, res: Response) {}
 
     @Validate(['old_password', 'new_password', 'confirm_password:match=new_password'])
     async changePassword(req: IRequest, res: Response) {
 
         try {
-            let body = req.body
-            let isUser = await User.findByPk(req.userId)
+            const body = req.body
+            const isUser = await User.findByPk(req.userId)
             if (!isUser) return res.status(401).json({ message: "User not found!" })
             const checkPassword = checkHash(body.old_password, isUser.password)
             if (!checkPassword) return res.status(400).json({ message: "Incorrect old Password." })
@@ -37,7 +36,7 @@ export class AccountController {
 
     async getProfile(req: IRequest, res: Response) {
         try {
-            let isUser = await User.findByPk(req.userId, {
+            const isUser = await User.findByPk(req.userId, {
                 attributes: { exclude: ['password'] }
             })
             return res.json({
