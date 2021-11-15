@@ -5,7 +5,6 @@ import { uploadFile } from "../lib/upload";
 
 export class UploadController{
 
-
         async uploadFile(req: IRequest, res: Response){
             if(!req.files.file)return res.status(400).send({message: "No file uploaded"});
             console.log(req.files.file)
