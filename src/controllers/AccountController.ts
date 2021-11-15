@@ -4,51 +4,51 @@ import { checkHash, makeHash, Validate } from "ex-helpers";
 import { User } from "../models/User";
 
 
-export class AccountController{
+export class AccountController {
 
-    async uploadAvatar(req:Request, res:Response){
+    async uploadAvatar(req: Request, res: Response) {
 
     }
 
-    @Validate(['old_password','new_password','confirm_password:match=new_password'])
-    async changePassword(req:IRequest, res:Response){
-        
+    @Validate(['old_password', 'new_password', 'confirm_password:match=new_password'])
+    async changePassword(req: IRequest, res: Response) {
+
         try {
-            let body = req.body 
+            let body = req.body
             let isUser = await User.findByPk(req.userId)
-            if(!isUser) return res.status(401).json({message:"User not found!"})
-            const checkPassword = checkHash(body.old_password,isUser.password)
-            if(!checkPassword)return res.status(400).json({message:"Incorrect old Password."})
+            if (!isUser) return res.status(401).json({ message: "User not found!" })
+            const checkPassword = checkHash(body.old_password, isUser.password)
+            if (!checkPassword) return res.status(400).json({ message: "Incorrect old Password." })
             isUser.password = makeHash(body.new_password)
             await isUser.save();
             isUser.password = ""
             return res.json({
-                message:"Password Changed.",
+                message: "Password Changed.",
                 user: isUser
             })
 
         } catch (error) {
             console.log(error)
             return res.status(500).json({
-                message:"Something going wrong!"
+                message: "Something going wrong!"
             })
         }
     }
 
-    async getProfile(req:IRequest, res: Response){
+    async getProfile(req: IRequest, res: Response) {
         try {
-            let isUser = await User.findByPk(req.userId,{
-                attributes:{exclude:['password']}
+            let isUser = await User.findByPk(req.userId, {
+                attributes: { exclude: ['password'] }
             })
             return res.json({
-                message:"Get Profile",
+                message: "Get Profile",
                 user: isUser
             })
 
         } catch (error) {
             console.log(error)
             return res.status(500).json({
-                message:"Something going wrong!"
+                message: "Something going wrong!"
             })
         }
 

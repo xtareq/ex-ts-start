@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-import express,{Express} from 'express'
+import express, { Express } from 'express'
 import { connection } from './config/Database';
 import authRoutes from './routes/authRoutes'
 import accountRoutes from './routes/accountRoutes'
@@ -14,14 +14,14 @@ import { logger } from 'ex-helpers';
 export type IPort = number | string
 const PORT = process.env.PORT || 3000
 
-async function igniteServer(){
+async function igniteServer() {
     /**
      * @function database connection check
      * @return void
     */
     try {
         await connection.authenticate()
-        await connection.sync({force:false});
+        await connection.sync({ force: false });
         //await connection.models.PasswordReset.sync({force:true})
     } catch (error) {
         logger.error(error)
@@ -29,9 +29,9 @@ async function igniteServer(){
     }
 
 
-    const server:Express = express();
+    const server: Express = express();
 
-   
+
 
     server.use(express.json())
     server.use(fileUpload({}));
@@ -42,14 +42,14 @@ async function igniteServer(){
     server.use("/auth", authRoutes)
     server.use("/account", accountRoutes)
     server.use("/upload", uploadRoutes)
-    
+
     return server
 
 }
-igniteServer().then((server:Express)=>{
-    logger.info("Server listen at: "+ PORT)
+igniteServer().then((server: Express) => {
+    logger.info("Server listen at: " + PORT)
     server.listen(PORT)
-}).catch(err=>{
+}).catch(err => {
     logger.error(err)
     process.exit(1)
 })
