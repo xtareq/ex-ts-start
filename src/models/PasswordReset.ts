@@ -18,10 +18,12 @@ export class PasswordReset extends Model{
     expired!:boolean
 
     @Default("current_timestamp()")
+    @Col
     @CreatedAt
     createdAt!: Date 
 
     @Default("null on update current_timestamp()")
+    @Col
     @UpdatedAt
     updatedAt!: Date
 }
