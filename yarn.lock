@@ -35,12 +35,6 @@
   dependencies:
     "@cspotcode/source-map-consumer" "0.8.0"
 
-<<<<<<< HEAD
-"@sendgrid/client@^7.6.0":
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/@sendgrid/client/-/client-7.6.0.tgz#f90cb8759c96e1d90224f29ad98f8fdc2be287f3"
-  integrity sha512-cpBVZKLlMTO+vpE18krTixubYmZa98oTbLkqBDuTiA3zRkW+urrxg7pDR24TkI35Mid0Zru8jDHwnOiqrXu0TA==
-=======
 "@dabh/diagnostics@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@dabh/diagnostics/-/diagnostics-2.0.2.tgz#290d08f7b381b8f94607dc8f471a12c675f9db31"
@@ -54,7 +48,6 @@
   version "7.5.0"
   resolved "https://registry.yarnpkg.com/@sendgrid/client/-/client-7.5.0.tgz#f22e083f6d457aed392a5e44f055ae3a378b2449"
   integrity sha512-tu2l3a1Egp65hRsDdX6qUHvpZydZvgEL7PLViQh4uu5DTqztpNCyw0UQYkyPYyXInWJjLax12UOciTG2V/s4OQ==
->>>>>>> 2ba9a55c8e69c48e0974272275d3e474af3ede47
   dependencies:
     "@sendgrid/helpers" "^7.6.0"
     axios "^0.21.4"

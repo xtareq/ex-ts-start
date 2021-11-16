@@ -24,11 +24,7 @@ async function igniteServer() {
         await connection.sync({ force: false });
         //await connection.models.PasswordReset.sync({force:true})
     } catch (error) {
-<<<<<<< HEAD
-        console.log(error)
-=======
         logger.error(error)
->>>>>>> 2ba9a55c8e69c48e0974272275d3e474af3ede47
         process.exit(1);
     }
 
