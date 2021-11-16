@@ -1,6 +1,6 @@
 import { JwtPayload } from "jsonwebtoken";
 
-declare namespace Express {
+declare module Express {
     export interface RequestWithUser extends Request {
        user:any
     }

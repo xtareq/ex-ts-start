@@ -1,11 +1,5 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { IRequest } from "../types";
-import { Validate } from "../helpers";
-import { checkHash, makeHash } from "../helpers/Str";
-import { User } from "../models/User";
-import path from "path";
-import sharp from "sharp";
-import crypto from "crypto";
 import { uploadFile } from "../lib/upload";
 
 

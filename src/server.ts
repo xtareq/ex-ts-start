@@ -28,6 +28,7 @@ async function igniteServer(PORT:IPort){
         await connection.sync({force:false});
         //await connection.models.PasswordReset.sync({force:true})
     } catch (error) {
+        console.log(error)
         process.exit(1);
     }
 

@@ -1,5 +1,7 @@
 import { Sequelize } from "sequelize-typescript"
 import path from 'path'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export const connection = new Sequelize({
     dialect:'mariadb',
