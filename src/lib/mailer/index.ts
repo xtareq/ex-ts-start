@@ -1,30 +1,29 @@
-
-export interface SendGridAttachMent{
-    content: any 
+export interface SendGridAttachMent {
+    content: any
     filename: string
-    type:string
+    type: string
     disposition: string
 }
 
-export interface SMTPAttachMent{
-    content: any 
+export interface SMTPAttachMent {
+    content: any
     filename: string
-    contentType:string
+    contentType: string
     encoding?: string
-    path?:string 
+    path?: string
 }
 
 
-export interface SmtpConfig{
-    host:string
-    port:number
+export interface SmtpConfig {
+    host: string
+    port: number
     secure: boolean
-    auth:{
-        user:string
-        password:string
+    auth: {
+        user: string
+        password: string
     }
 }
-export interface SMTPOption{
+export interface SMTPOption {
     test: boolean
     html: string
     subject: string
@@ -33,7 +32,7 @@ export interface SMTPOption{
     config?: SmtpConfig
     attachments?: SMTPAttachMent[]
 }
-export interface SendGridOption{
+export interface SendGridOption {
     html: string
     subject: string
     sender: string

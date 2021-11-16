@@ -38,8 +38,8 @@ export class User extends Model{
     role!:Role
 
     @CreatedAt
-    created_at!: Date 
+    createdAt!: Date 
 
     @UpdatedAt
-    updated_at!: Date
+    updatedAt!: Date
 }

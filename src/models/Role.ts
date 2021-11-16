@@ -10,10 +10,10 @@ export class Role extends Model{
     name!:string
 
     @CreatedAt
-    created_at!: Date 
+    createdAt!: Date 
 
     @UpdatedAt
-    updated_at!: Date
+    updatedAt!: Date
 }
 
 
