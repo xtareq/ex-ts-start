@@ -43,11 +43,8 @@
     "express-fileupload": "^1.2.1",
     "express-jwt": "^6.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mariadb": "^2.5.4",
     "nodemailer": "^6.7.0",
     "reflect-metadata": "^0.1.13",
-    "sequelize": "^6.7.0",
-    "sequelize-typescript": "^2.1.1",
     "server": "^1.0.36",
     "sharp": "^0.29.2"
   },
