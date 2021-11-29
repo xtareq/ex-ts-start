@@ -44,10 +44,10 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
-"@sendgrid/client@^7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@sendgrid/client/-/client-7.5.0.tgz#f22e083f6d457aed392a5e44f055ae3a378b2449"
-  integrity sha512-tu2l3a1Egp65hRsDdX6qUHvpZydZvgEL7PLViQh4uu5DTqztpNCyw0UQYkyPYyXInWJjLax12UOciTG2V/s4OQ==
+"@sendgrid/client@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@sendgrid/client/-/client-7.6.0.tgz#f90cb8759c96e1d90224f29ad98f8fdc2be287f3"
+  integrity sha512-cpBVZKLlMTO+vpE18krTixubYmZa98oTbLkqBDuTiA3zRkW+urrxg7pDR24TkI35Mid0Zru8jDHwnOiqrXu0TA==
   dependencies:
     "@sendgrid/helpers" "^7.6.0"
     axios "^0.21.4"
@@ -921,15 +921,6 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-<<<<<<< HEAD
-ex-helpers@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/ex-helpers/-/ex-helpers-1.0.5.tgz#edc6fc37d23e6a84d0f6e758f9fb9f2dbc007564"
-  integrity sha512-gGmfnR4/B4Om84+zU6MAPmWpymBm5BXLweEgWoCVAcYJbkoPpIaeJEmHQAd37aLSd0BtjCkWHneuzszf77XwVw==
-  dependencies:
-    "@xtareq/validator" "^1.1.9"
-    bcryptjs "^2.4.3"
-=======
 ex-helpers@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/ex-helpers/-/ex-helpers-1.0.6.tgz#b72b8edb1e90e85943ab71f8f5863b9a019be60f"
@@ -938,7 +929,6 @@ ex-helpers@^1.0.6:
     "@xtareq/validator" "^1.1.9"
     bcryptjs "^2.4.3"
     winston "^3.3.3"
->>>>>>> 2ba9a55c8e69c48e0974272275d3e474af3ede47
 
 expand-template@^2.0.3:
   version "2.0.3"
