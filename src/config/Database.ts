@@ -1,11 +1,6 @@
 import { Sequelize } from "sequelize-typescript"
 import path from 'path'
-<<<<<<< HEAD
-import dotenv from 'dotenv'
-dotenv.config()
-=======
 import { Dialect } from "sequelize"
->>>>>>> 2ba9a55c8e69c48e0974272275d3e474af3ede47
 
 
 export const connection= new Sequelize({
